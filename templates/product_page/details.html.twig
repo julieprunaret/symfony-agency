@@ -8,10 +8,16 @@
             <li class="breadcrumb-item active" aria-current="page">{{ bien.titre }}</li>
   		</ol>
 	</nav>
+
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="photos du bien immobilier" /></div>
+                    <div class="col-md-6">
+                    {% if bien.imageName %}<img class="card-img-top mb-5 mb-md-0" src="{{ vich_uploader_asset(bien, 'imageFile') }}" />
+                    {% else %}
+                    <img class="card-img-top mb-5 mb-md-0" src="https://via.placeholder.com/150" />
+                    {% endif %}
+                    </div>
                     <div class="col-md-6">
                         <div class="small mb-1">Agence Lilipucien</div>
                         <h1 class="display-5 fw-bolder">{{ bien.titre }}</h1>
@@ -51,7 +57,11 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="photos du bien immobilier" />
+                                {% if bien.imageName %}
+                                <img class="card-img-top" src="{{ vich_uploader_asset(bien, 'imageFile') }}" alt="Card image cap">
+                                {% else %}
+                                <img class="card-img-top" src="https://via.placeholder.com/80" alt="Card image cap">
+                                {% endif %}
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

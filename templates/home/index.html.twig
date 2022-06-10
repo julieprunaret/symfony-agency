@@ -19,8 +19,14 @@
 			{% for bien in biens %}
 				<div class="card m-3" style="width: 18rem;">
 				<div class="badge bg-{{ bien.status.color|default('dark')  }} text-white position-absolute" style="top: 0.5rem; right: 1rem">{{ bien.status.title|default('N.C') }}</div>
-  					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Card image cap">
-					<span>{{ bien.status.title|default('N.C') }}</span>
+				<!-- product image -->
+				{% if bien.imageName %}
+				<img class="card-img-top" src="{{ vich_uploader_asset(bien, 'imageFile') }}" alt="Card image cap">
+				{% else %}
+				<img class="card-img-top" src="https://via.placeholder.com/80" alt="Card image cap">
+				{% endif %}
+
+  					
 					{# si le titre est nul on affiche ce qu'il y a dans default #}
   					<div class="card-body">
     					<h5 class="card-title">{{ bien.titre }}</h5>
